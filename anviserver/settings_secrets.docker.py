@@ -1,0 +1,6 @@
+import os
+
+SECRET_KEY = os.environ.get('ANVISERVER_SECRET_KEY', 'aaaaa')
+EMAIL_HOST_PASSWORD = os.environ.get('ANVISERVER_EMAIL_HOST_PASSWORD', None)
+RAVEN_DSN = os.environ.get('ANVISERVER_RAVEN_DSN', '')
+ANALYTICS_SCRIPT_BLOCK = os.environ.get('ANVISERVER_ANALYTICS_SCRIPT_BLOCK', '')
