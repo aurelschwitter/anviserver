@@ -9,35 +9,7 @@ WORKDIR /app
 
 # git configs
 ENV ANVIO_BRANCH=v5
-
-# settings from anviserver/anviserver/settings.py
-# override in docker with --env / -e (docker run -e ANVISERVER_TIME_ZONE=UTC+1)
-# ENV ANVISERVER_DEBUG=False
-# ENV ANVISERVER_LANGUAGE_CODE=en-us
-# ENV ANVISERVER_TIME_ZONE=UTC
-# ENV ANVISERVER_USE_I18N=True
-# ENV ANVISERVER_USE_L10N=True
-# ENV ANVISERVER_USE_TZ=True
-# ENV ANVISERVER_ACCOUNT_ACTIVATION_DAYS=30
-# ENV ANVISERVER_REGISTRATION_AUTO_LOGIN=True
-# ENV ANVISERVER_EMAIL_USE_TLS=True
-# ENV ANVISERVER_EMAIL_HOST=smtp.gmail.com
-# ENV ANVISERVER_EMAIL_HOST_USER=anvi.server@gmail.com
-# ENV ANVISERVER_EMAIL_PORT=587
-# ENV ANVISERVER_FROM_EMAIL=${ANVISERVER_EMAIL_HOST_USER}
 ENV ANVISERVER_DATA_DIR=/app/data
-
-
-# secrets from settings_secret.py
-# ENV ANVISERVER_SECRET_KEY=fixme
-# ENV ANVISERVER_EMAIL_HOST_PASSWORD=fixme
-# ENV ANVISERVER_ANALYTICS_SCRIPT_BLOCK=''
-# ENV ANVISERVER_RAVEN_DSN=''
-
-# gunicorn config
-# ENV PORT=8000
-# ENV GUNICORN_WORKERS=4
-# ENV GUNICORN_BIND=0.0.0.0:${PORT}
 
 # create dir structure
 RUN mkdir -p ${ANVISERVER_DATA_DIR}
@@ -99,7 +71,7 @@ RUN ["useradd", "-m", "anviserver"]
 RUN chown -R anviserver:anviserver /app/data /app/anviserver
 USER anviserver:anviserver
 
-EXPOSE ${PORT}
+EXPOSE 8000
 
 # expose static folder as volume (will be consumed by nginx)
 VOLUME [ "/app/anviserver/static" ]
